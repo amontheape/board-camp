@@ -42,7 +42,7 @@ export async function insertGame( req, res ) {
     `, [name]);
 
 
-    if(!game) {
+    if(!game.length) {
       await connection.query(`
         INSERT 
           INTO games (name, image, "stockTotal", "categoryId", "pricePerDay")

@@ -20,7 +20,7 @@ export async function insertCategory( req, res ) {
       WHERE categories.name = $1
     `, [name]);
  
-    if(!category) {
+    if(!category.length) {
       await connection.query(`
         INSERT 
           INTO categories (name)
