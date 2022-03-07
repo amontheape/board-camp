@@ -14,7 +14,7 @@ export async function insertCategory( req, res ) {
   const { name } = req.body;
 
   try {
-    const { rows: [category]} = await connection.query(`
+    const { rows: category } = await connection.query(`
       SELECT *
         FROM categories
       WHERE categories.name = $1
@@ -27,12 +27,13 @@ export async function insertCategory( req, res ) {
           VALUES ($1)
       `, [name]);
 
-      res.sendStatus(201);
+      return res.sendStatus(201);
     }
 
     res.status(409).send('category already exists');
 
   } catch (err) {
+    console.log(err);
     res.status(500).send(err);
   }
 }
