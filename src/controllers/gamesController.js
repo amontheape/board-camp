@@ -33,7 +33,7 @@ export async function insertGame( req, res ) {
 
   try {
     const { rows: categories } = await connection.query(`SELECT id FROM categories`);
-    if (!categories.some(id => categoryId === id)) return res.status(409).send('category does not exists');
+    if (!categories.some(id => categoryId === id)) return res.status(400).send('category does not exists');
 
     const { rows: game } = await connection.query(`
       SELECT * 
