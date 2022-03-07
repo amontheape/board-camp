@@ -60,7 +60,6 @@ export async function updateCustomer( req, res ) {
 
   try {
     const { rows: customersIds } = await connection.query(`SELECT id FROM customers`);
-    console.log(customersIds)
 
     if (!customersIds.some( e => e.id == id )) return res.status(404).send('clientId not found');
 
